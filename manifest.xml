@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin_manifest>
+	<field key="author" value="ColdTrick IT Solutions" />
+	<field key="version" value="2.2" />
+	<field key="description" value="Enables redirecting of login" />
+	<field key="website" value="http://www.coldtrick.com/" />
+	<field key="copyright" value="(C) ColdTrick IT Solutions 2009" />
+	<field key="licence" value="GNU Public License version 2" />
+	<field key="elgg_version" value="2009030702" />
+</plugin_manifest>
+<!--
+====================
+Version History
+====================
+2.2 (2011-05-05):
+	- added: different login on first login
+	- changed: code cleanup
+
+2.1:
+	- added: custom redirect list
+	
+2.0:
+	- added: support for custom redirect options
+1.1:
+	- added: dutch translation
+-->
