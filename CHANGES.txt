@@ -1,0 +1,22 @@
+= Version History =
+
+3.0:
+
+- changed: updated for Elgg 1.8
+
+2.2 (2011-05-05):
+
+- added: different login on first login
+- changed: code cleanup
+
+2.1:
+
+- added: custom redirect list
+	
+2.0:
+
+- added: support for custom redirect options
+
+1.1:
+
+- added: dutch translation

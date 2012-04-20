@@ -21,7 +21,7 @@
 	
 		'login_redirector:admin:custom_redirect' => "Enter a custom redirect here",
 		'login_redirector:admin:custom_redirect_info:title' => "Custom URL options",
-		'login_redirector:admin:custom_redirect_info' => "To redirect a user to a site or page of your liking, enter the custom url. Using this option will prohibit the redirect override by users.<br />Enter the complete url (including http or https) or use one of the following shortcuts (including brackets):",
+		'login_redirector:admin:custom_redirect_info' => "To redirect a user to a site or page of your liking, enter the custom url.<br />Enter the complete url (including http or https) or use one of the following shortcuts (including brackets):",
 		
 		'login_redirector:admin:custom_redirect_list' => "Add custom pages for the users to select from (comma seperated, in the format: title|url)",
 	

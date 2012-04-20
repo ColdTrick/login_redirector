@@ -21,7 +21,7 @@
 		
 		'login_redirector:admin:custom_redirect' => "Voer hier een aangepast doorverwijzing in",
 		'login_redirector:admin:custom_redirect_info:title' => "Aangepaste URL opties",
-		'login_redirector:admin:custom_redirect_info' => "Om een gebruiker door te verwijzen naar een pagina naar keuze, voer de URL in. Als je gebruik maakt van deze optie, dan kan dit niet meer aangepast worden door gebruikers.<br />Voer de complete url in (inclusief http of https) of gebruik een van de volgende (inclusief de vierkante haken):",
+		'login_redirector:admin:custom_redirect_info' => "Om een gebruiker door te verwijzen naar een pagina naar keuze, voer de URL in.<br />Voer de complete url in (inclusief http of https) of gebruik een van de volgende (inclusief de blok haken):",
 	
 		'login_redirector:admin:custom_redirect_list' => "Voeg extra pagina's to waar gebruikers uit kunnen kiezen (komma gescheiden in de vorm: titel|url)",
 		
@@ -30,4 +30,3 @@
 	);
 	
 	add_translation("nl", $dutch);
-?>
