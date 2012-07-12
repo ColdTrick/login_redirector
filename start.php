@@ -125,7 +125,7 @@
 				}
 				break;
 			case "custom":
-				if($custom = $plugin->first_login_custom_redirect){
+				if($custom = $plugin->custom_redirect){
 					$url = str_ireplace("[wwwroot]", elgg_get_site_url(), $custom);
 					$url = str_ireplace("[username]", $user->username, $url);
 				}
