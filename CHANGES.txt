@@ -1,6 +1,9 @@
 = Version History =
+x.x:
 
-3.0:
+- changed: updated manifest.xml
+
+3.0 (2012-04-20):
 
 - changed: updated for Elgg 1.8
 
