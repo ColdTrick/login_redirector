@@ -1,7 +1,9 @@
 = Version History =
 x.x:
 
+- added: multi site support for fist login
 - changed: updated manifest.xml
+- changed: layout of the plugin
 
 3.0 (2012-04-20):
 
