@@ -1,11 +1,12 @@
 = Version History =
 
-x.x:
+3.1 (2014-18-12):
 
 - added: multi site support for fist login
 - fixed: custom redirect not working for general login
 - changed: updated manifest.xml
 - changed: layout of the plugin
+- applied coding standards
 
 3.0 (2012-04-20):
 
