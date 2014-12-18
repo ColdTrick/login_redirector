@@ -3,11 +3,12 @@
 	<name>Login Redirector</name>
 	<author>ColdTrick IT Solutions</author>
 	<version>3.0</version>
+	<id>login_redirector</id>
 	<description>Enables redirecting of login</description>
 	<website>http://www.coldtrick.com/</website>
 	<repository>https://github.com/ColdTrick/login_redirector</repository>
 	<bugtracker>https://github.com/ColdTrick/login_redirector/issues</bugtracker>
-	<copyright>(C) ColdTrick IT Solutions 2011 - 2012</copyright>
+	<copyright>(C) ColdTrick IT Solutions 2011 - 2014</copyright>
 	<license>GNU General Public License version 2</license>
  	
  	<requires>
