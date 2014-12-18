@@ -21,8 +21,8 @@ elgg_register_event_handler("pagesetup", "system", "login_redirector_pagesetup")
  */
 function login_redirector_init() {
 	// register events
-	elgg_register_event_handler("create", "member_of_site", "login_redirector_create_member_of_site_handler");
-	elgg_register_event_handler("delete", "member_of_site", "login_redirector_delete_member_of_site_handler");
+	elgg_register_event_handler("create", "relationship", "login_redirector_create_member_of_site_handler");
+	elgg_register_event_handler("delete", "relationship", "login_redirector_delete_member_of_site_handler");
 	
 	elgg_register_event_handler("login", "user", "login_redirector_login_handler", 10000); // needs to be last
 	

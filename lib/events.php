@@ -18,6 +18,10 @@ function login_redirector_create_member_of_site_handler($event, $type, $object) 
 		return;
 	}
 	
+	if ($object->relationship !== "member_of_site") {
+		return;
+	}
+	
 	$user_guid = $object->guid_one;
 	$site_guid = $object->guid_two;
 	
@@ -41,6 +45,10 @@ function login_redirector_create_member_of_site_handler($event, $type, $object) 
 function login_redirector_delete_member_of_site_handler($event, $type, $object) {
 	
 	if (empty($object) || !($object instanceof ElggRelationship)) {
+		return;
+	}
+	
+	if ($object->relationship !== "member_of_site") {
 		return;
 	}
 	

@@ -19,7 +19,7 @@ function login_redirector_get_first_login_url(ElggUser $user) {
 	
 	// check if first login is configured
 	$pref = elgg_get_plugin_setting("first_login_redirectpage", "login_redirector");
-	if (empty($pref) || ($pref == "none")) {
+	if (empty($pref) || ($pref === "none")) {
 		return $result;
 	}
 	
