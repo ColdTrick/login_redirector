@@ -1,6 +1,6 @@
 <?php
 
-$english = array(
+return [
 	// Main title
 	'login_redirector' => "Login Redirector",
 	
@@ -28,6 +28,4 @@ $english = array(
 
 	'login_redirector:user:config' => "Select the page you will go to after you are logged in:",
 	
-);
-
-add_translation("en", $english);
+];
