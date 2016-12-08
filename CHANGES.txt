@@ -1,6 +1,11 @@
 Version history
 ===============
 
+5.0 (2016-12-08):
+
+- changed: increased Elgg requirement to 2.2
+- changed: rewrite of the plugin for Elgg 2.2
+
 4.0.1 (2016-09-21):
 
 - several chores for automated releases
