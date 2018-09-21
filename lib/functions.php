@@ -97,8 +97,11 @@ function login_redirector_get_general_login_url(ElggUser $user) {
 		case 'custom':
 			$custom = elgg_get_plugin_setting('custom_redirect', 'login_redirector');
 			if (!empty($custom)) {
-				$url = str_ireplace('[wwwroot]', $site->getURL(), $custom);
-				$url = str_ireplace('[username]', $user->username, $url);
+				list($title, $url) = explode('|', $custom);
+				if (!empty($title) && !empty($url)) {
+					$url = str_ireplace('[wwwroot]', $site->getURL(), $url);
+					$url = str_ireplace('[username]', $user->username, $url);
+				}
 			}
 			break;
 		default:
