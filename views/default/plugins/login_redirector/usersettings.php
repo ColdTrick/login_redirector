@@ -27,10 +27,13 @@ if (elgg_is_active_plugin('profile')) {
 if ($plugin->redirectpage == 'custom') {
 	$custom_redirect = $plugin->custom_redirect;
 	if (!empty($custom_redirect)) {
-		$custom_redirect = str_ireplace('[wwwroot]', '/', $custom_redirect);
-		$custom_redirect = str_ireplace('[username]', elgg_get_logged_in_user_entity()->username, $custom_redirect);
-		
-		$redirect_options['custom_redirect'] = $custom_redirect;
+		list($title, $url) = explode('|', $custom_redirect);
+		if (!empty($title) && !empty($url)) {    
+			$url = str_ireplace('[wwwroot]', '/', $url);
+			$url = str_ireplace('[username]', elgg_get_logged_in_user_entity()->username, $url);
+			
+			$redirect_options[$url] = ucwords($title);
+		}
 	}
 }
 
