@@ -3,7 +3,7 @@
 	"description": "Enables redirecting of login",
 	"type": "elgg-plugin",
 	"keywords": ["elgg", "plugin"],
-	"license": "GPL-2.0",
+	"license": "GPL-2.0-only",
 	"support": {
 		"source": "https://github.com/ColdTrick/login_redirector",
 		"issues": "https://github.com/ColdTrick/login_redirector/issues"
