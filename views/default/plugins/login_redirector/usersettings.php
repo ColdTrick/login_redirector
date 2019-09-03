@@ -1,9 +1,6 @@
 <?php
 /**
 * Login Redirector
-*
-* @package login_redirector
-* @author ColdTrick IT Solutions
 */
 
 /* @var $plugin \ElggPlugin */
@@ -49,9 +46,10 @@ if (!empty($custom_redirect_list)) {
 	}
 }
 
-echo elgg_view_input('select', [
-	'label' => elgg_echo('login_redirector:user:config'),
+echo elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('login_redirector:user:config'),
 	'name' => 'params[redirectpage]',
 	'options_values' => $redirect_options,
-	'value' => $plugin->getUserSetting('redirectpage', $page_owner->getGUID()),
+	'value' => $plugin->getUserSetting('redirectpage', $page_owner->guid),
 ]);

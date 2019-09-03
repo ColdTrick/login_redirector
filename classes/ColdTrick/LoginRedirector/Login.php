@@ -13,44 +13,157 @@ class Login {
 	 *
 	 * @return void
 	 */
-	public static function loginEvent($event, $type, $user) {
+// 	public static function loginEvent($event, $type, $user) {
 		
-		if (!($user instanceof \ElggUser)) {
-			return;
-		}
+// 		if (!($user instanceof \ElggUser)) {
+// 			return;
+// 		}
 		
-		$site = elgg_get_site_entity();
-		$session = elgg_get_session();
+// 		$site = elgg_get_site_entity();
+// 		$session = elgg_get_session();
 		
-		// first login? And no flag
-		if (empty($user->last_login) && !check_entity_relationship($user->getGUID(), 'first_login', $site->getGUID())) {
-			// set flag
-			add_entity_relationship($user->getGUID(), 'first_login', $site->getGUID());
-		} elseif (!empty($user->last_login) && empty($session->get('last_forward_from'))) {
-			elgg_register_plugin_hook_handler('login:forward', 'user', '\ColdTrick\LoginRedirector\Login::forward');
-		}
-	}
+// 		// first login? And no flag
+// 		if (empty($user->last_login) && !check_entity_relationship($user->getGUID(), 'first_login', $site->getGUID())) {
+// 			// set flag
+// 			add_entity_relationship($user->getGUID(), 'first_login', $site->getGUID());
+// 		} elseif (!empty($user->last_login) && empty($session->get('last_forward_from'))) {
+			
+// 		}
+// 	}
 	
 	/**
 	 * Change the forward URL after login
 	 *
-	 * @param string $hook         the name of the hook
-	 * @param string $type         the type of the hook
-	 * @param string $return_value current return value
-	 * @param array  $params       supplied params
+	 * @param \Elgg\Hook $hook the hook
 	 *
 	 * @return void|string
 	 */
-	public static function forward($hook, $type, $return_value, $params) {
+	public static function forward(\Elgg\Hook $hook) {
 		
-		$user = elgg_extract('user', $params);
-		if (!($user instanceof \ElggUser)) {
+		$user = $hook->getUserParam();
+		if (!$user instanceof \ElggUser) {
 			return;
 		}
 		
-		$forward_url = login_redirector_get_general_login_url($user);
+		// respect last forward from
+		if ($hook->getParam('source') === 'last_forward_from') {
+			return;
+		}
+		
+		$forward_url = '';
+		if (empty($user->prev_last_login)) {
+			$forward_url = self::getFirstLoginURL($user);
+		}
+		
+		if (empty($forward_url)) {
+			$forward_url = self::getGeneralLoginURL($user);
+		}
+		
 		if (!empty($forward_url)) {
 			return $forward_url;
 		}
+	}
+	
+	/**
+	* Returns the redirect url after login
+	*
+	* @param ElggUser $user the user to check
+	*
+	* @return false|string
+	*/
+	protected static function getGeneralLoginURL(\ElggUser $user) {
+		
+		$pref = '';
+		$url = '';
+		
+		if (elgg_get_plugin_setting('useroverride', 'login_redirector') == 'yes') {
+			$pref = elgg_get_plugin_user_setting('redirectpage', $user->guid, 'login_redirector');
+		}
+		
+		if (empty($pref)) {
+			$pref = elgg_get_plugin_setting('redirectpage', 'login_redirector');
+		}
+		
+		switch ($pref) {
+			case 'homepage':
+				$url = elgg_get_site_url();
+				break;
+			case 'profile':
+				if (elgg_is_active_plugin('profile')) {
+					$url = "profile/{$user->username}";
+				}
+				break;
+			case 'dashboard':
+				if (elgg_is_active_plugin('dashboard')) {
+					$url = 'dashboard';
+				}
+				break;
+			case 'custom':
+				$custom = elgg_get_plugin_setting('custom_redirect', 'login_redirector');
+				if (!empty($custom)) {
+					$url = str_ireplace('[wwwroot]', elgg_get_site_url(), $custom);
+					$url = str_ireplace('[username]', $user->username, $url);
+				}
+				break;
+			default:
+				if (!empty($pref)) {
+					$url = str_ireplace('[wwwroot]', elgg_get_site_url(), $pref);
+					$url = str_ireplace('[username]', $user->username, $url);
+				}
+				break;
+		}
+			
+		if (!empty($url)) {
+			// set the redirect url correctly
+			return elgg_normalize_url($url);
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Get the URL for the first login redirect
+	 *
+	 * @param ElggUser $user the user to check for
+	 *
+	 * @return false|string
+	 */
+	protected static function getFirstLoginURL(\ElggUser $user) {
+		
+		// check if first login is configured
+		$pref = elgg_get_plugin_setting('first_login_redirectpage', 'login_redirector');
+		if (empty($pref) || ($pref === 'none')) {
+			return false;
+		}
+		
+		$url = '';
+		switch ($pref) {
+			case 'homepage':
+				$url = elgg_get_site_url();
+				break;
+			case 'profile':
+				if (elgg_is_active_plugin('profile')) {
+					$url = "profile/{$user->username}";
+				}
+				break;
+			case 'dashboard':
+				if (elgg_is_active_plugin('dashboard')) {
+					$url = 'dashboard';
+				}
+				break;
+			case 'custom':
+				$custom = elgg_get_plugin_setting('first_login_custom_redirect', 'login_redirector');
+				if (!empty($custom)) {
+					$url = str_ireplace('[wwwroot]', elgg_get_site_url(), $custom);
+					$url = str_ireplace('[username]', $user->username, $url);
+				}
+				break;
+		}
+			
+		if (!empty($url)) {
+			return elgg_normalize_url($url);
+		}
+		
+		return false;
 	}
 }
