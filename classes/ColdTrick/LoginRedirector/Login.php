@@ -98,7 +98,7 @@ class Login {
 					$url = 'dashboard';
 				}
 				break;
-			case 'custom':
+			case 'custom_redirect':
 				$custom = elgg_get_plugin_setting('custom_redirect', 'login_redirector');
 				if (!empty($custom)) {
 					$url = str_ireplace('[wwwroot]', elgg_get_site_url(), $custom);
