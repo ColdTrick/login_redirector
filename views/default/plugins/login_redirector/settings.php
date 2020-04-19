@@ -16,7 +16,7 @@ if (elgg_is_active_plugin('dashboard')) {
 if (elgg_is_active_plugin('profile')) {
 	$redirect_options['profile'] = elgg_echo('login_redirector:admin:option:profile');
 }
-$redirect_options['custom'] = elgg_echo('login_redirector:admin:option:custom_redirect');
+$redirect_options['custom_redirect'] = elgg_echo('login_redirector:admin:option:custom_redirect');
 
 $first_redirect_options = [
 	'none' => elgg_echo('login_redirector:admin:option:none'),
