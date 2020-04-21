@@ -27,7 +27,7 @@ if ($plugin->redirectpage == 'custom') {
 		$custom_redirect = str_ireplace('[wwwroot]', '/', $custom_redirect);
 		$custom_redirect = str_ireplace('[username]', elgg_get_logged_in_user_entity()->username, $custom_redirect);
 		
-		$redirect_options['custom_redirect'] = $custom_redirect;
+		$redirect_options['custom'] = $custom_redirect;
 	}
 }
 
